@@ -11,9 +11,8 @@ class InitController extends Controller
     public function actionIndex()
     {
         print("Проверка на существование данных\n");
-        $teachers = Teacher::find()->all();
         
-        if(count($teachers) > 0) {
+        if(Teacher::find()->count('*') > 0) {
             print("В базе уже есть данные. Не выполнено\n");
             exit;
         }
@@ -31,8 +30,7 @@ class InitController extends Controller
             $teacher->save();
         }
         
-        $teachers = Teacher::find()->all();
-        $cntT = count($teachers);
+        $cntT = Teacher::find()->count('*');
         print("Добавлены {$cntT} учителей\n");
         
         print("Добавляю учеников\n");
@@ -52,8 +50,7 @@ class InitController extends Controller
             $learner->save();
         }
         
-        $learners = Learner::find()->all();
-        $cntL = count($learners);
+        $cntL = Learner::find()->count('*');
         
         print("Добавлены {$cntL} учеников\n");
         print("Готово\n");
